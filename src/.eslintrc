@@ -1,0 +1,39 @@
+{"env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "rules": {
+    "linebreak-style": 0,
+    "react/prop-types": ["ignore"],
+    "react/display-name": ["ignore"],
+    "react/jsx-filename-extension": 0,
+    "no-unused-vars": [0, {"vars": "all", "args": "after-used"}],
+    "arrow-parens": 0,
+    "no-console": 0,
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "no-plusplus": 0,
+    "no-class-assign":0,
+    "no-param-reassign": 0,
+    "no-trailing-spaces": 0,
+    "no-irregular-whitespace": 2,
+    "no-multiple-empty-lines": [2, {"max": 1}],//空行不超过2行
+    "indent": ["error", 4],  //缩进为2个
+    "semi": 0, //不强制使用分号,react
+    "no-spaced-func": 2, //函数调用时 函数名与()之间不能有空格
+    "no-undef": 2, //不能有未定义的变量
+    "no-debugger": 0 //禁用debugger
+  }
+}
