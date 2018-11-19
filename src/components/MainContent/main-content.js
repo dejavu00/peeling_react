@@ -31,7 +31,7 @@ class MainContent extends Component {
             tempList.push(e.target.value);
             this.setState({
                 'all':tempList
-            })
+            });
             break;
         }
         case 'todo': {
@@ -40,7 +40,7 @@ class MainContent extends Component {
             this.setState({
                 'all': allList,
                 [type]: tempList
-            })
+            });
             break;
         }
         default:
@@ -49,7 +49,7 @@ class MainContent extends Component {
             this.setState({
                 'all': allList,
                 [type]: tempList
-            })
+            });
             break;
         }
     }
@@ -60,7 +60,7 @@ class MainContent extends Component {
             <div className="main_content">
                 <div className="card-container">
                     <Tabs type="card">
-                        <TabPane tab="Tab Title 1" key="1">
+                        <TabPane tab="全部任务" key="1">
                             <div className="todo-show">
                                 {all.map(item => {
                                     return(
@@ -76,7 +76,7 @@ class MainContent extends Component {
                                 <Input placeholder="What do you have to do?" onChange={this.fillForm.bind(this,'all')}/>
                             </div>
                         </TabPane>
-                        <TabPane tab="Tab Title 2" key="2">
+                        <TabPane tab="代办任务" key="2">
                             <div className="todo-show">
                                 <div className="todo-show">
                                     {todo.map(item => {
@@ -95,7 +95,7 @@ class MainContent extends Component {
                             </div>
 
                         </TabPane>
-                        <TabPane tab="Tab Title 3" key="3">
+                        <TabPane tab="已完成任务" key="3">
                             <div className="todo-show">
                                 <div className="todo-show">
                                     {completed.map(item => {

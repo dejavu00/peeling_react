@@ -97,6 +97,13 @@ app.get('/user/query',function(req,res){
 
 });
 
+app.get('/get/randomNum',function(req,res){
+    var randomNum = Math.floor(Math.random()*10);
+    res.json({
+        randomNum
+    })
+});
+
 //配置服务端口
 
 var server = app.listen(5000, function () {
