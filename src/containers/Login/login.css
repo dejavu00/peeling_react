@@ -1,0 +1,14 @@
+#user-login{
+    background-image: url("../../static/d6e0923c-8f38-4727-99f2-fd104ecce5da.jpg");
+    height:100%;
+}
+.login-form{
+    width:300px;
+    height:300px;
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom: 0;
+    margin: auto;
+}
