@@ -6,9 +6,15 @@ import config from './config'
  * 第二个是引入的具体的一个图表类型 （可选）
  * 第三个是表的title(可选)
  */
+// import * as echarts from 'echarts';
+
 import echarts from 'echarts/lib/echarts'
-import 'echarts/lib/chart/pie'
+import 'echarts/lib/chart/line'
 import 'echarts/lib/component/title'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/toolbox'
+import 'echarts/lib/component/dataZoom'
+import 'echarts/lib/component/visualMap'
 
 export class PieReact extends Component {
     /**
@@ -53,7 +59,7 @@ export class PieReact extends Component {
     render() {
         return (
             <div>
-                <div id={this.state.pieId} style={{width: '500px', height: '500px'}}/>
+                <div id={this.state.pieId} style={{width: '1000px', height: '500px'}}/>
             </div>
         )
     }

@@ -1,43 +1,88 @@
+import dataData from './beijing'
+const data = dataData.data;
+console.log('json',data);
 export default {
+    title: {
+        text: 'Beijing AQI'
+    },
     tooltip: {
-        trigger: 'item'
+        trigger: 'axis'
     },
-    legend: {
-        orient: 'vertical',
-        x: 'left',
-        data:['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+    xAxis: {
+        data: data.map(function (item) {
+            return item[0];
+        })
     },
-    series: [
-        {
-            name:'访问来源',
-            type:'pie',
-            radius: ['50%', '70%'],
-            avoidLabelOverlap: false,
-            label: {
-                normal: {
-                    show: false,
-                    position: 'center'
-                },
-                emphasis: {
-                    show: true,
-                    textStyle: {
-                        fontSize: '30',
-                        fontWeight: 'bold'
-                    }
-                }
-            },
-            labelLine: {
-                normal: {
-                    show: false
-                }
-            },
-            data:[
-                {value:335, name:'直接访问'},
-                {value:310, name:'邮件营销'},
-                {value:234, name:'联盟广告'},
-                {value:135, name:'视频广告'},
-                {value:1548, name:'搜索引擎'}
-            ]
+    yAxis: {
+        splitLine: {
+            show: false
         }
-    ]
-};
+    },
+    toolbox: {
+        left: 'center',
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    dataZoom: [{
+        startValue: '2014-06-01'
+    }, {
+        type: 'inside'
+    }],
+    visualMap: {
+        top: 10,
+        right: 10,
+        pieces: [{
+            gt: 0,
+            lte: 50,
+            color: '#096'
+        }, {
+            gt: 50,
+            lte: 100,
+            color: '#ffde33'
+        }, {
+            gt: 100,
+            lte: 150,
+            color: '#ff9933'
+        }, {
+            gt: 150,
+            lte: 200,
+            color: '#cc0033'
+        }, {
+            gt: 200,
+            lte: 300,
+            color: '#660099'
+        }, {
+            gt: 300,
+            color: '#7e0023'
+        }],
+        outOfRange: {
+            color: '#999'
+        }
+    },
+    series: {
+        name: 'Beijing AQI',
+        type: 'line',
+        data: data.map(function (item) {
+            return item[1];
+        }),
+        markLine: {
+            silent: true,
+            data: [{
+                yAxis: 50
+            }, {
+                yAxis: 100
+            }, {
+                yAxis: 150
+            }, {
+                yAxis: 200
+            }, {
+                yAxis: 300
+            }]
+        }
+    }
+}

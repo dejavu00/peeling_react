@@ -7,7 +7,6 @@ import Main from '../Main/main'
 const history = createBrowserHistory();
 
 const Home = props =>{
-    debugger
     const access_token = sessionStorage.getItem('access-token')|| '';
     // 未登录
     if(!access_token){

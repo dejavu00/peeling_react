@@ -31,6 +31,11 @@ const MainContent = Loadable({
     loading: loadingComponent
 });
 
+const Charts = Loadable({
+    loader:() => import('../../components/Chart/line'),
+    loading: loadingComponent
+});
+
 class Main extends Component {
 
     constructor(props) {
@@ -86,6 +91,7 @@ class Main extends Component {
                     <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                         <Route exact path="/user/list" component={User}/>
                         <Route exact path="/permission/list" component={MainContent}/>
+                        <Route exact path="/role/list" component={Charts}/>
                     </div>
                 </Content>
             </Layout>

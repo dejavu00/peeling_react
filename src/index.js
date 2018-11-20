@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './containers/App/App';
+import App from './pages/App/App';
 // import App from './containers/Demand';
 import store from './redux/store'
 import {addToCart} from './redux/actions/cart-action';

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Tabs, Checkbox, Input  } from 'antd';
+import {getRandomNumber} from '../../api/user-manage'
 const TabPane = Tabs.TabPane;
 class MainContent extends Component {
 
@@ -25,7 +26,6 @@ class MainContent extends Component {
     fillForm(type,e) {
         const tempList = this.state.toDoList[type];
         const allList = this.state.toDoList['all'];
-        debugger
         switch (type) {
         case 'all': {
             tempList.push(e.target.value);
@@ -52,6 +52,10 @@ class MainContent extends Component {
             });
             break;
         }
+    }
+
+    componentDidMount(){
+
     }
 
     render() {
