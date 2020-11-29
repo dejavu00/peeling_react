@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currying</title>
+</head>
+<body>
+<h1>
+    双箭头的作用
+</h1>
+<p id="text"></p>
+<p id="text2"></p>
+<script>
+    let text = document.querySelector('#text');
+    let text2 = document.querySelector('#text2');
+    let obj ={
+        getTotal:(prefix)=>(moneny)=>{
+            return (prefix || '$') + moneny;
+        }
+    };
+    text.innerHTML = obj.getTotal('@@')(2000);
+    var getTotal = function (prefix) {
+        return function (moneny) {
+            return (prefix || '$') + moneny;
+        }
+    };
+
+    text2.innerHTML= getTotal('@@')(2000);
+    console.log(getTotal('@@')(2000));
+    console.log(getTotal('@xxxx')(2000));
+</script>
+</body>
+</html>

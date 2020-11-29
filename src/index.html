@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <script>
+    //     var strategies = {
+    //         // 验证策略1：是否为空
+    //         notNull: function(value) {
+    //             return /\s+/.test(value) ? '表单不能为空，请输入内容！' : '';
+    //         },
+    //         // 验证策略2：是否是一个数字
+    //         isNumber: function(value) {
+    //             return /^[0-9]+(\.[0-9]+)?$/.test(value) ? '' : '请输入数字！';
+    //         },
+    //         // 验证策略3：是否是本地座机
+    //         isPhone: function(value) {
+    //             return /^\d{3}\-\d{8}$|^\d{4}\-\d{7}$/.test(value) ? '' : '座机号有误，请检查后重新输入！';
+    //         }
+    //     }
+    // var InputStragety = function() {
+    //   var cache = [];
+
+    //     return {
+    //       addStrategy: (type) => {
+    //         cache.push(strategies[type])
+    //       },
+    //       check: value => {
+
+    //         for
+
+    //         var isValid = cache.some(fn => {
+    //           return fn(value)
+    //         })
+    //       }
+    //     }
+    // }
+    // 维护权限列表
+    const jobList = ['FE', 'BE'];
+
+    // 策略
+    var strategies = {
+      checkRole: function (value) {
+        if (value === 'juejin') {
+          return true;
+        }
+        return false;
+      },
+      checkGrade: function (value) {
+        if (value >= 1) {
+          return true;
+        }
+        return false;
+      },
+      checkJob: function (value) {
+        if (jobList.indexOf(value) > 1) {
+          return true;
+        }
+        return false;
+      },
+      checkEatType: function (value) {
+        if (value === 'eat melons') {
+          return true;
+        }
+        return false;
+      }
+    };
+
+    // 校验规则
+    var Validator = function () {
+      this.cache = [];
+
+      // 添加策略事件
+      this.add = function (value, method) {
+        this.cache.push(function () {
+          return strategies[method](value);
+        });
+      };
+
+      // 检查
+      this.check = function () {
+        for (let i = 0; i < this.cache.length; i++) {
+          let valiFn = this.cache[i];
+          var data = valiFn(); // 开始检查
+          if (!data) {
+            return false;
+          }
+        }
+        return true;
+      };
+    };
+    var validator = new Validator();
+    const data1 = {
+      grade: 0,
+      role: 'juejin'
+    };
+    validator.add(data1.grade, 'checkGrade');
+    validator.add(data1.role, 'checkRole');
+
+    const result = validator.check();
+
+    var check = function () {
+      for (var index = 0; index < 4; index++) {
+        if (index === 2) {
+          return true
+        }
+      }
+      return false;
+    }
+    console.log('result', check())
+
+
+
+
+  </script>
+</body>
+
+</html>

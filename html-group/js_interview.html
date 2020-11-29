@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+
+        }
+        .box{
+            width:200px;
+            height:200px;
+
+        }
+        .box1{
+            background: red;
+            float: left;
+        }
+        .box2{
+            background: blue;
+            float: left;
+        }
+        .mid{
+            float: left;
+            width: calc(100% - 400px);
+            background: yellow;
+            height:200px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p id="para">shoudog</p>
+    <span id="text"></span>
+    <input type="text" id="obj" oninput="changeVal(event)" value="">
+</div>
+<script>
+ // 点击出现对应索引
+    var lists = document.querySelectorAll('#uList li');
+    for (var i = 0; i < lists.length; i++) {
+        lists[i].onclick = (function (i) {
+            return function () {
+                alert(i);
+            }
+        })(i);
+    }
+    // 扩展字符串
+    String.prototype.trim = function () {
+        var str = this;
+        var index = str.substring(0,str.length).indexOf(' ');
+        while (index !== -1){
+            str = str.substring(0,index) + str.substring(index+1,str.length);
+            index = str.substring(0,str.length).indexOf(' ');
+        }
+        return str;
+    }
+    function changeVal(e) {
+        newObj.name = e.target.value;
+    }
+    var newObj = {};
+    Object.defineProperty(newObj,'name',{
+        get:function () {
+            return document.getElementById('obj').value;
+        },
+        set:function (val) {
+            console.log('setVal',val);
+            document.getElementById('text').innerHTML = val;
+            document.getElementById('obj').value=val;
+        }
+
+    });
+    document.getElementById('para').onclick=function () {
+        newObj.name='a'
+    }
+
+//    var bubbleSort = (function () {
+//        function test(arr) {
+//            for(var i=0;i<arr.length;i++){
+//                for(var j=i+1;j<arr.length;j++){
+//                    var temp =[];
+//                    if(arr[j] > arr[i]){
+//                        temp = arr[i];
+//                        arr[i] = arr[j];
+//                        arr[j] = temp;
+//                    }
+//                }
+//            }
+//            return arr;
+//        }
+//        return test;
+//    })();
+//    console.log(bubbleSort([3, 40, 22, 1, 55]));
+    // 冒泡排序,每一次将最大数移到最后
+    function bubbleSort(arr) {
+        var len = arr.length;
+        for(var i =0;i<len;i++){
+            for(var j=0;j<len -i-1;j++){
+                if(arr[j+1] < arr[j]){
+                    [arr[j],arr[j+1]] = [arr[j+1],arr[j]];
+                }
+            }
+            console.log(arr);
+        }
+        return arr;
+    }
+    // 快速排序
+    function quick_sort(arr) {
+        if(arr.length <= 1){
+            return arr;
+        }
+        var left = [],
+            right =[];
+        var standardVal = arr[Math.floor(arr.length/2)];
+        console.log('standardVal',standardVal);
+        for(var i=0;i<arr.length;i++){
+            if(arr[i] < standardVal){
+                left.push(arr[i]);
+            }else if(arr[i] > standardVal){
+                right.push(arr[i])
+            }else{
+                standardVal = arr[i];
+            }
+        }
+        return quick_sort(left).concat([standardVal],quick_sort(right))
+    }
+
+    console.log('quick_sort',quick_sort([2,39,4,8,3]));
+    // 二分查找
+    function binary_search(arr,key) {
+        var low =0;
+        var high = arr.length -1;
+        while(low<=high){
+            var mid = parseInt(low + high)/2;
+            if(arr[mid] === key){
+                return arr[mid];
+            }else if(arr[mid] > key){
+                high = mid -1;
+            }else if(arr[mid] < key){
+                low = mid + 1;
+            }else{
+                return -1;
+            }
+        }
+    }
+
+    //数组去重复
+    function remove_duplicate(arr) {
+        return arr.reduce((arr,ele)=>{
+            if(!arr.includes(ele)){
+                arr.push(ele);
+            }
+            return arr;
+        },[])
+    }
+    //
+    var remove_duplicate2 = function (arr) {
+        return [...new Set(arr)];
+    };
+    console.log('数组去重1+迅速去重',remove_duplicate2([22,3,56,2,3,56,0,0]));
+    function unique(arr) {
+        return arr.reduce((obj,ele) => {
+            if(!obj[ele]){
+                obj[ele] = 1;
+            }else{
+                obj[ele] +=1;
+            }
+            return obj;
+        },{})
+    }
+
+    console.log('数组去重2+统计次数,',unique([22, 3, 56, 2, 3,3,3,3,3, 56, 0, 0]));
+
+    function mul(x) {
+        const result = (y) => mul(x * y);
+        result.valueOf = () => x;
+        return result;
+    }
+    // 浅拷贝
+    var arr = [1, 2, 3];
+    var arr2 = [...arr];
+    var obj1 = { foo: 'bar', x: 42 };
+    var obj2 = { foo: 'baz', y: 13 };
+
+    var clonedObj = { ...obj1 };
+    var mergedObj = { ...obj1, ...obj2 };
+    // setTimeout修改了执行上下文
+    function User(login) {
+        this.login = login;
+        this.sayHi = function() {
+            console.log(this.login);
+        }
+    }
+    var user = new User('John');
+    /**setTimeout(user.sayHi, 1000); //undefined
+    解决方法:
+    1.   setTimeout(function () {
+           user.sayHi();
+       },1000)
+    2.setTimeout(user.sayHi.bind(user), 1000)
+    // 后面2个参数是回调函数的参数值
+    setTimeout(function (a,b) {
+        console.log(a + b);
+    },1000,3,3)
+     **/
+    function Recursive(n) {
+        if(n === 1){
+            return n;
+        }
+        return n*(arguments.callee(n-1));
+    }
+
+    console.log('result',Recursive(3));
+    // 深度克隆
+    function deepCopy(obj) {
+        debugger
+       var result = null;
+       if(typeof obj === 'object'){
+           result = obj.constructor === Array?[]:{};
+           for(var i in obj){
+              if(typeof obj[i]  === 'object'){
+                  result[i] = deepCopy(obj[i]);
+              }else{
+                  result[i] = obj[i];
+              }
+          }
+       }else {
+           result = obj;
+        }
+        return result;
+    }
+    var obj=[{a:[2,3,3]},{b:'dddd'}]
+    var newObj =deepCopy(obj);
+    console.log('----------------------------------',newObj);
+//    var light = deepCopy({name:'dl'});
+    (function() {
+        console.group("2、闭包")
+
+        function f1() {
+            var n = 0
+
+            function f2() {
+                n++
+                console.log("n=" + n)
+            }
+            return f2
+        }
+        var result = f1()
+        try {
+            console.log(n) //undefind
+        } catch(e) {
+            console.log(e)
+        }
+
+
+        console.groupEnd()
+    })()
+</script>
+</body>
+</html>

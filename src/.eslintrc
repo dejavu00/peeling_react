@@ -30,10 +30,10 @@
     "no-trailing-spaces": 0,
     "no-irregular-whitespace": 2,
     "no-multiple-empty-lines": [2, {"max": 1}],//空行不超过2行
-    "indent": ["error", 4],  //缩进为2个
+    "indent": 0,  //缩进为2个
     "semi": 0, //不强制使用分号,react
     "no-spaced-func": 2, //函数调用时 函数名与()之间不能有空格
-    "no-undef": 2, //不能有未定义的变量
+    "no-undef": 0, //不能有未定义的变量
     "no-debugger": 0 //禁用debugger
   }
 }

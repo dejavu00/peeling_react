@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>a</title>
+</head>
+<body>
+<button id="add">添加</button>
+<button id="del">删除</button>
+<script src="bus.js">
+</script>
+<script>
+    var add = document.querySelector('#add');
+    var del = document.querySelector('#del');
+    // 初始化函数
+//	eventBus.broadcast('ADD',{
+//		text:'It is December 19th'
+//	});
+    add.onclick = function () {
+		eventBus.broadcast('ADD',{
+			text: '添加'+ Math.random()
+		})
+	};
+
+	del.onclick = function () {
+		eventBus.broadcast('DEL',{
+			text: '删除'+ Math.random()
+		})
+	}
+
+	for (var i = 0; i < 4; i++) {
+        (function (i) {
+            setTimeout(function () {
+                console.log(i);
+            },0)
+        })(i);
+    }
+
+</script>
+</body>
+</html>

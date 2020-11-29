@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="title"></h1>
+<script>
+    function quick_sort(arr) {
+        if(arr.length <=1){
+            return arr;
+        }
+        var left = [],
+            right =[];
+        var mid = arr[Math.floor(arr.length/2)];
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]<mid){
+                left.push(arr[i])
+            }else if(arr[i]>mid){
+                right.push(arr[i]);
+            }else{
+                mid=arr[i]
+            }
+        }
+        return quick_sort(left).concat([mid],quick_sort(right));
+    }
+    function Animal(name) {
+        this.name = name;
+        this.getName = function () {
+            console.log(this.name);
+        }
+    }
+    function Dog(name) {
+        Animal.call(this,name)
+    }
+    Dog.prototype = new Animal()
+    var xiaogou = new Dog('xiaogou');
+    xiaogou.getName()
+    console.log(xiaogou);
+    //    console.log(xiaogou.__proto__ === Dog.prototype);
+//    console.log(Dog.prototype.constructor === Animal);
+//    console.log(Dog.prototype.__proto__ === Animal.prototype);
+//    console.log(Animal.prototype.constructor === Animal);
+
+</script>
+</body>
+</html>

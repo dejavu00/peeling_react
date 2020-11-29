@@ -32,7 +32,7 @@ const MainContent = Loadable({
 });
 
 const Charts = Loadable({
-    loader:() => import('../../components/Chart/line'),
+    loader:() => import('../Comment/comment'),
     loading: loadingComponent
 });
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>debounce</title>
+</head>
+<body>
+<h1>
+    debounce
+</h1>
+<button id="btn">
+    click
+</button>
+<script>
+    var btn = document.querySelector('#btn');
+    function showTime() {
+        console.log(`当前时间${(new Date).getSeconds()}`);
+    }
+
+    var debounce = function (fn,time) {
+        var tmp;
+        return function () {
+            if(tmp){
+                clearTimeout(tmp);
+            }
+            var args= arguments;
+            var _self = this;
+            tmp = setTimeout(function () {
+                fn.apply(_self,args);
+            },time);
+        }
+    }
+    btn.onclick = debounce(showTime,1000);
+</script>
+</body>
+</html>

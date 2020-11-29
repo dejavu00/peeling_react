@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>b</title>
+</head>
+<body>
+<p id="add">
+    处理中...
+</p>
+<p id="del">
+    处理中...
+</p>
+<script src="bus.js">
+</script>
+<script>
+	var add = document.querySelector('#add')
+	var del = document.querySelector('#del')
+    function update(key,data) {
+		if(key === 'ADD'){
+			add.innerText = JSON.parse(data).data.text;
+
+		}else{
+			del.innerText = JSON.parse(data).data.text;
+
+		}
+	}
+	// 绑定事件触发后的回掉函数
+    eventBus.on(update);
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 var express=require('express');
 var app =express();
-
+app.use(express.static(__dirname + '/static'));
 //设置跨域访问
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

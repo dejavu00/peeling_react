@@ -1,0 +1,7 @@
+{
+  "@primary-color": "red",
+  "@layout-sider-background": "red",
+  "@layout-footer-background": "orange",
+  "@borderColor": "green",
+  "@progress-default-color" : "lightblue"
+}

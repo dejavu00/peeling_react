@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width:0;
+            height:0;
+            border-top:0;
+            border-right: 50px dashed transparent;
+            border-bottom: 250px dashed green;
+            border-left: 50px solid transparent;
+        }
+    </style>
+</head>
+<body>
+<ul id="catagory">
+    <li><a href="#">星期一</a></li>
+    <li><a href="#">星期二</a></li>
+    <li><a href="#">星期三</a></li>
+    <li><a href="#">星期四</a></li>
+</ul>
+<div id="box"></div>
+<p id="para">para</p>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    (function ($) {
+        $.fn.extend({
+            ShowTime:function (options) {
+                var defaults ={
+                    left:0,
+                    right:'100px',
+                    time:500
+                }
+                var o = $.extend(defaults, options);
+                $("li a", $(this)).hover(function () {
+                    $(this).animate({'paddingLeft':o.right},o.time)
+                },function () {
+                    $(this).animate({'paddingLeft':o.left},o.time)
+                })
+            }
+        })
+    })(jQuery)
+//var defaults = {
+//    animatePadding: 10,
+//    hoverColor: "Black"
+//};
+//var options = $.extend(defaults, {name:'dejavu'});
+//console.log();
+$('#box').click(function () {
+    $('#catagory').ShowTime();
+})
+    $('#para').click(function () {
+        $('#catagory').ShowTime({
+            time: 1000,
+            right: 500
+        });
+    })
+
+</script>
+</body>
+</html>

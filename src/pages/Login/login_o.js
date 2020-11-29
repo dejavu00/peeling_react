@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import { Form, Icon, Input, Button, message } from 'antd';
 import axios from 'axios'
-import styles from './login.css'
+import './login.css'
 const FormItem = Form.Item;
-console.log(styles)
 class NormalLoginForm extends Component {
 
     state = {
